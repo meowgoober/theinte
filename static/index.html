@@ -1,52 +1,198 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="referrer" content="no-referrer" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" id="tab-favicon" href="favicon.png" />
-  <title id="t">Home</title>
-  <link rel="stylesheet" href="/assets/css/global.css?v=6" />
-  <link rel="stylesheet" href="/assets/css/h.css?v=01" />
-  <link rel="stylesheet" href="/assets/css/nav.css?v=01" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6840529569014734"
-    crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    .main {
+      text-align: center;
+      z-index: 10;
+      padding: 20px;
+    }
+    
+    .title {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    
+    #splash {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      color: #aaa;
+    }
+    
+    .search-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .search-home {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .search-home:focus {
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .navbar-link {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+  </style>
 </head>
 
-<body class="center" onload="SplashT">
-  <div class="f-nav"></div>
-  <div id="particles-js">
-    <script rel="preload" src="https://cdn.jsdelivr.net/particles.js/2.0.0/"></script>
-    <div class="main">
-      <h1 class="title">&#73;&#110;&#116;&#101;&#114;&#115;&#116;&#101;&#108;&#108;&#97;&#114;</h1>
-      <p id="splash"></p>
-      <div class="search-container">
-        <form id="fv" method="POST">
-          <input id="iv" class="search-home" placeholder="Search or enter a URL" type="text" />
-        </form>
-      </div>
+<body>
+  <div class="navbar">
+    <div></div>
+    <div>
+      <a class="navbar-link" href="#">Games</a>
+      <a class="navbar-link" href="#">Apps</a>
+      <a class="navbar-link" href="#">Tabs</a>
+      <a class="navbar-link" href="#">Settings</a>
     </div>
   </div>
-  <script src="assets/js/005.js?v=000"></script>
-  <script src="/assets/js/004.js?v=000"></script>
-  <script src="./assets/mathematics/bundle.js?v=2025-04-15"></script>
-  <script src="./assets/mathematics/config.js?v=2025-04-15"></script>
-  <script src="assets/js/003.js?v=000"></script>
-  <script src="/assets/js/001.js?v=001"></script>
-  <!-- DO NOT REMOVE-->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKJQ5QHQTJ"></script>
+
+  <div id="particles-js"></div>
+  
+  <div class="main">
+    <h1 class="title">Simple Search</h1>
+    <p id="splash">Enter a URL or search term</p>
+    <div class="search-container">
+      <form id="searchForm" method="GET" action="https://www.google.com/search">
+        <input id="searchInput" name="q" class="search-home" placeholder="Search or enter a URL" type="text" autocomplete="off">
+      </form>
+    </div>
+  </div>
+
+  <!-- Particles.js for background effect -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
   <script>
-    window.dataLayer = window.dataLayer || []
-    function gtag() {
-      dataLayer.push(arguments)
-    }
-    gtag("js", new Date())
+    // Initialize particles.js
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: false },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: '#ffffff',
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: 'none',
+          random: false,
+          straight: false,
+          out_mode: 'out',
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: {
+          onhover: { enable: true, mode: 'repulse' },
+          onclick: { enable: true, mode: 'push' },
+          resize: true
+        }
+      },
+      retina_detect: true
+    });
 
-    gtag("config", "G-WKJQ5QHQTJ")
+    // Handle form submission
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const input = document.getElementById('searchInput').value.trim();
+      
+      // Check if input is a URL
+      function isUrl(string) {
+        try {
+          new URL(string);
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+      
+      // Also check for likely URLs without protocol
+      function isProbablyUrl(string) {
+        return string.includes('.') && 
+               !string.includes(' ') && 
+               (string.startsWith('www.') || 
+                string.endsWith('.com') || 
+                string.endsWith('.org') || 
+                string.endsWith('.net') ||
+                string.endsWith('.edu') ||
+                string.endsWith('.io') ||
+                string.endsWith('.gov'));
+      }
+      
+      if (isUrl(input) || isProbablyUrl(input)) {
+        // Handle URL - this would proxy in full version
+        let url = input;
+        
+        // Add protocol if missing
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+          url = 'https://' + url;
+        }
+        
+        // In a real proxy we'd process this differently
+        window.location.href = url;
+      } else {
+        // Handle as search query
+        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(input);
+      }
+    });
   </script>
-  <!-- DO NOT REMOVE-->
 </body>
-
 </html>
